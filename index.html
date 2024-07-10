@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>NLW</title>
     <link rel="stylesheet" href="css/index.css" />
     <script src="js/script.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
@@ -13,28 +13,45 @@
     </script>
   </head>
   <body>
-    <form onsubmit="salvarAtividade(event)">
-      <div>
-        <input type="text" placeholder="Qual a atividade ? " name="atividade" required/>
-      </div>
+    <div id="app">
+      <form onsubmit="salvarAtividade(event)">
+        <div id="place" class="card-bg">
+          <img src="assets/map-pin.svg" alt="">
+          Florianópolis, SC
+        </div>
+        <div class="fields">
+          <div class="field-wrapper">
+            <img src="assets/tag.svg" alt="">
+            <input
+              type="text"
+              placeholder="Qual a atividade ? "
+              name="atividade"
+              required
+            />
+          </div>
 
-      <div>
-        <select name="dia">
-          <option value="2024-03-01"></option>
-        </select>
-      </div>
+          <div class="field-wrapper">
+            <img src="assets/calendar.svg" alt="">
+            <select name="dia">
+              <option value="2024-03-01"></option>
+            </select>
+          </div>
 
-      <div>
-        <select name="hora">
-          <option value="10:03"></option>
-        </select>
-      </div>
-
-      <button>Salvar atividade</button>
-    </form>
-    <main>
-      <h1>Atividades</h1>
-      <section></section>
-    </main>
+          <div class="field-wrapper">
+            <img src="assets/circle-check.svg" alt="">
+            <select name="hora">
+              <option value="10:03"></option>
+            </select>
+          </div>
+        </div>
+        <button>Salvar atividade</button>
+      </form>
+      <main>
+        <h1>Atividades</h1>
+        <section></section>
+      </main>
+    </div>
   </body>
+
+  
 </html>

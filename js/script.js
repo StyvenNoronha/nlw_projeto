@@ -44,10 +44,17 @@ const criarItemAtividade = (atividade) => {
   const formatar = formatador(atividade.data);
 
   return `
-    <div>
-        ${input}
+    <div class="card-bg">
+          <div >
+            <img class="ativo" src="assets/circle-check.svg" alt="">
+            <img class="inativo" src="assets/circle-dashed.svg" alt="">
+            ${input}
+          </div>
         <span>${atividade.nome}</span>
-        <time>${formatar.dia.semana.longo},dia ${formatar.dia.numerico} de ${formatar.mes} às  ${formatar.hora}h</time>
+        <time class="short">
+        ${formatar.dia.semana.curto}.${formatar.dia.numerico}<br>${formatar.hora}
+        </time>
+        <time class="full">${formatar.dia.semana.longo},dia ${formatar.dia.numerico} de ${formatar.mes} às  ${formatar.hora}h</time>
     </div>
     
     `;
@@ -55,7 +62,7 @@ const criarItemAtividade = (atividade) => {
 
 const atualizarAtividades = () => {
   const section = document.querySelector("section");
-  section.innerHTML = ''
+  section.innerHTML = "";
 
   if (atividades.length == 0) {
     section.innerHTML = `<p>nenhuma atividade registrada</p>`;
@@ -70,31 +77,31 @@ const atualizarAtividades = () => {
 atualizarAtividades();
 
 const salvarAtividade = (event) => {
-    event.preventDefault()
-    const dadosDoFormulario = new FormData(event.target)
-  
-    const nome = dadosDoFormulario.get('atividade')
-    const dia = dadosDoFormulario.get('dia')
-    const hora = dadosDoFormulario.get('hora')
-    const data = `${dia} ${hora}`
-  
-    const novaAtividade = {
-      nome,
-      data,
-      finalizada: false
-    }
-  
-    const atividadeExiste = atividades.find((atividade) => {
-      return atividade.data == novaAtividade.data
-    })
-  
-    if (atividadeExiste) {
-      return alert('Não foi possivel.')
-    }
-  
-    atividades = [novaAtividade, ...atividades]
-    atualizarAtividades()
+  event.preventDefault();
+  const dadosDoFormulario = new FormData(event.target);
+
+  const nome = dadosDoFormulario.get("atividade");
+  const dia = dadosDoFormulario.get("dia");
+  const hora = dadosDoFormulario.get("hora");
+  const data = `${dia} ${hora}`;
+
+  const novaAtividade = {
+    nome,
+    data,
+    finalizada: false,
+  };
+
+  const atividadeExiste = atividades.find((atividade) => {
+    return atividade.data == novaAtividade.data;
+  });
+
+  if (atividadeExiste) {
+    return alert("Não foi possivel.");
   }
+
+  atividades = [novaAtividade, ...atividades];
+  atualizarAtividades();
+};
 
 const criarDiasSelecao = () => {
   const dias = [
@@ -134,20 +141,17 @@ const criarHoraSelecao = () => {
 };
 criarHoraSelecao();
 
-
-
 const concluirAtividade = (event) => {
-    const input = event.target
-    const dataDesteInput = input.value
-  
-    const atividade = atividades.find((atividade) => {
-      return atividade.data == dataDesteInput
-    })
-  
-    if(!atividade) {
-      return
-    }
-  
-    atividade.finalizada = !atividade.finalizada
+  const input = event.target;
+  const dataDesteInput = input.value;
+
+  const atividade = atividades.find((atividade) => {
+    return atividade.data == dataDesteInput;
+  });
+
+  if (!atividade) {
+    return;
   }
 
+  atividade.finalizada = !atividade.finalizada;
+};
